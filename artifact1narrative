@@ -1,0 +1,126 @@
+Introduction
+•	Hello, my name is Victor, and this is my Milestone One code review for CS 499
+•	I am reviewing a C++ course management application developed in a data structures course
+•	I will explain existing functionality, analyze the code using the CS 499 Code Review Checklist, and discuss planned enhancements
+•	The enhancements will demonstrate growth in software design and engineering, algorithms and data structures, and databases
+Artifact Overview / Existing Functionality
+•	The application supports academic course planning
+•	It reads course data from a CSV file
+•	Stores course number, title, and prerequisites
+•	Uses a menu-driven interface
+•	Allows users to:
+o	Load course data
+o	Print a sorted list of courses
+o	Search for a specific course
+•	At a high level, the program reads structured data, stores it in memory, and supports basic queries
+Code Review – Structure
+•	Code correctly implements core functionality
+•	Opens and parses a CSV file
+•	Creates course objects and stores them in a container
+•	Provides menu options for printing and searching
+•	Original design goal was to use a binary search tree
+•	Current implementation uses a vector
+•	Sorting is done each time courses are printed
+•	Searching is done with a linear scan
+•	Code works, but does not fully meet the intended data structure design
+•	This is a major planned enhancement
+Structure – Modularity and Efficiency
+•	Code style and formatting are consistent
+•	Functions are separated into logical tasks
+•	Too much control flow lives in main
+•	Planned refactor into:
+o	File parsing component
+o	Data storage component
+o	User interface controller
+•	No unreachable code or leftover stubs
+•	Repeated patterns in printing and error handling
+•	Storage use is inefficient due to repeated vector copying and sorting
+•	Default filename is a magic string and should become a named constant
+Documentation
+•	Code is heavily commented
+•	Many comments restate what the code is doing
+•	Planned shift to higher-quality comments
+•	Focus on explaining intent and design decisions
+•	Add function-level documentation:
+o	Purpose
+o	Inputs
+o	Outputs
+o	Error behavior
+•	Ensure comments remain consistent during refactoring
+Variables
+•	Variable names are clear and meaningful
+•	Types are used consistently
+•	Course fields stored as strings
+•	Prerequisites stored as a vector of strings
+•	CSV parsing does not trim whitespace
+•	Extra spaces could break searching
+•	Planned improvements:
+o	Trim whitespace
+o	Normalize course number casing
+•	No obvious unused variables, but will re-evaluate after refactoring
+Arithmetic Operations
+•	Program does not perform floating-point arithmetic
+•	No division or numerical edge cases
+•	Most arithmetic checklist items are not applicable
+•	Focus remains on data parsing and retrieval
+Loops and Branches
+•	File parsing loop is clear and correctly terminated
+•	CSV parsing loop reads remaining comma-separated values
+•	Search loop exits as soon as a match is found
+•	Menu uses a switch statement with a default case
+•	User input is not validated
+•	Non-numeric input could break the program
+•	Planned improvement:
+o	Validate and sanitize all user input
+o	Recover gracefully from invalid input
+Defensive Programming
+•	openFile exits immediately if the file is missing
+•	This prevents graceful recovery
+•	Planned change:
+o	Return an error status or throw and handle exceptions
+•	Input data is assumed to be complete
+•	No validation for malformed CSV lines
+•	Planned additions:
+o	Validate required fields
+o	Handle empty or malformed records safely
+•	Ensure program behaves correctly if actions are taken before data is loaded
+•	Ensure files are always handled and closed predictably
+Planned Enhancements – Software Design and Engineering
+•	Refactor into a cleaner architecture
+•	Separate concerns:
+o	File parsing
+o	Data storage
+o	User interaction
+•	Improve error handling and input validation
+•	Reduce repetitive code
+•	Improve documentation quality and consistency
+Planned Enhancements – Algorithms and Data Structures
+•	Replace vector-based storage with a binary search tree
+•	Improve search efficiency
+•	Eliminate repeated sorting
+•	Use in-order traversal for sorted output
+•	Document time-complexity improvements and trade-offs
+Planned Enhancements – Databases
+•	Application already uses structured persistent data via CSV
+•	Planned improvements:
+o	Validate records on input
+o	Normalize stored data
+o	Enforce consistent formatting
+o	Possibly export cleaned data
+•	Focus on:
+o	Data persistence
+o	Reliable retrieval
+o	Data integrity
+•	These align with core database concepts
+Conclusion
+•	Application provides a solid functional foundation
+•	Checklist review identified improvement areas in:
+o	Structure
+o	Efficiency
+o	Defensive programming
+•	Planned enhancements will:
+o	Improve modularity and professionalism
+o	Strengthen algorithmic efficiency
+o	Improve structured data handling
+•	Enhancements demonstrate growth across all three CS 499 categories
+•	Thank you for reviewing my Milestone One submission
